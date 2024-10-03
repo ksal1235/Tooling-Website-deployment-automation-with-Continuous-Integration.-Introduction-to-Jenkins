@@ -193,9 +193,29 @@ Test the configuration and make sure the connection returns Success. Remember, t
 Configure it to send all files probuced by the build into our previouslys define remote directory. In our case we want to copy all files and directories - so we use **. If you want to apply some particular pattern to define which files to send - use this syntax.
 
 ![image](https://github.com/user-attachments/assets/9c28a2e1-6857-4a32-bd00-edbceba38456)
-
 Save this configuration and go ahead, change something in README.MD file in your GitHub Tooling repository.
 
 
 Webhook will trigger a new job and in the "Console Output" of the job you will find something like this:
+```
+ssh: Transferred 24 file(s)
+Finished: SUCCESS
+```
 
+![image](https://github.com/user-attachments/assets/e86631c4-cb8f-417d-83a5-779f7e7feb90)
+
+If you find an error, change security settings of  NFS Server
+
+```
+sudo chown -R nobody:nobody /mnt
+sudo chmod -R 777 /mnt
+```
+
+![image](https://github.com/user-attachments/assets/41aecb62-0608-4b58-8989-dc6ff19c618c)
+
+To make sure that the files in /mnt/apps have been udated - connect via SSH/Putty to  NFS server and check README.MD file.
+
+```
+cat /mnt/apps/README.md
+```
+![image](https://github.com/user-attachments/assets/954286ac-c6d0-4708-afc9-28e983338a31)
